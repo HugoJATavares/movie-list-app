@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import axios from 'axios'
 
+
 export default function SearchMovies() {
     const [movies, setMovies] = useState([]);
 
@@ -19,7 +20,7 @@ export default function SearchMovies() {
                         }
                     }))
                 }
-            }).catch((error)=>
+            }).catch((error) =>
 
     }
   return (
