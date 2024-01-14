@@ -13,7 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import MovieFilterOutlinedIcon from '@mui/icons-material/MovieFilterOutlined';
 
-const pages = ['Search Movies', 'Watchlist'];
+const pages = ['Search Movies', 'Favourites'];
 
 
 function ResponsiveAppBar() {
@@ -46,7 +46,7 @@ function ResponsiveAppBar() {
                             textDecoration: 'none',
                         }}
                     >
-                        Movie App
+                        Movie Watchlist
                     </Typography>
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -100,7 +100,7 @@ function ResponsiveAppBar() {
                             textDecoration: 'none',
                         }}
                     >
-                        Movie App
+                        Movie Watchlist
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page) => (
