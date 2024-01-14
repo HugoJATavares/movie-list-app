@@ -13,7 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import MovieFilterOutlinedIcon from '@mui/icons-material/MovieFilterOutlined';
 
-const pages = ['Search Movies', 'Save Movies'];
+const pages = ['Search Movies', 'Watchlist'];
 
 
 function ResponsiveAppBar() {
