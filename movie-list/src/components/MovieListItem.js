@@ -12,7 +12,7 @@ import { IconButton } from '@mui/material';
 
 
 export default function MovieListItem(props) {
-    const { title, year, type, imdbID, poster, action, } = props;
+    const { title, year, type, imdbID, poster, action } = props;
 
     return (
         <Card sx={{ display: 'flex' }}>

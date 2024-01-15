@@ -31,5 +31,6 @@ export default function SearchMovies() {
         <MovieFilters handleSearchMovies= {handleSearchMovies} />
         <MovieList data={movies} />
     </div>
+    
   )
 }

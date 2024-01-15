@@ -6,6 +6,7 @@ import SearchMovies from "./features/SearchMovies";
 import Favourites from "./features/Favourites";
 
 function App() {
+  
   return (
     <BrowserRouter>
       <CssBaseline/>
