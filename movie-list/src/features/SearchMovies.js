@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import axios from 'axios'
-
+import MovieFilters from '../components/MovieFilters';
+import MovieList from '../components/MovieList';
 
 export default function SearchMovies() {
     const [movies, setMovies] = useState([]);
@@ -20,10 +21,15 @@ export default function SearchMovies() {
                         }
                     }))
                 }
-            }).catch((error) =>
+            }).catch((err) => {
+                alert(err);
+            })
 
     }
   return (
-    <div>SearchMovies</div>
+    <div>
+        <MovieFilters handleSearchMovies= {handleSearchMovies} />
+        <MovieList data={movies} />
+    </div>
   )
 }

@@ -1,13 +1,20 @@
-import {CssBaseline} from "@mui/material";
+import { CssBaseline } from "@mui/material";
+import { BrowserRouter, Routes, Route } from "react-router-dom"
 
 import NavBar from "./components/NavBar"
+import SearchMovies from "./features/SearchMovies";
+import Favourites from "./features/Favourites";
 
 function App() {
   return (
-    <div>
+    <BrowserRouter>
       <CssBaseline/>
       <NavBar/>
-    </div>
+      <Routes>
+        <Route path="/" element={<SearchMovies />} />
+        <Route path="/watchlist" element={<Favourites />}/>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

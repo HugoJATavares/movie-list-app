@@ -7,13 +7,19 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import MovieFilterOutlinedIcon from '@mui/icons-material/MovieFilterOutlined';
+import { NavLink } from 'react-router-dom';
 
-const pages = ['Search Movies', 'Favourites'];
+const pages = [{
+    title: 'Search Movies', 
+    path: '/'
+},{    
+    title:'Watchlist',
+    path: '/watchlist'
+
+}];
 
 
 function ResponsiveAppBar() {
@@ -29,7 +35,7 @@ function ResponsiveAppBar() {
     };
 
     return (
-        <AppBar position="static">
+        <AppBar position="static" sx={{ backgroundColor: 'red'}}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <MovieFilterOutlinedIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -37,7 +43,6 @@ function ResponsiveAppBar() {
                         variant="h6"
                         noWrap
                         component="a"
-                        href="#app-bar-with-responsive-menu"
                         sx={{
                             mr: 2,
                             display: { xs: 'none', md: 'flex' },
@@ -79,8 +84,8 @@ function ResponsiveAppBar() {
                             }}
                         >
                             {pages.map((page) => (
-                                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center">{page}</Typography>
+                                <MenuItem key={page.path} onClick={handleCloseNavMenu} component={NavLink} to={page.path}>
+                                    <Typography textAlign="center">{page.title}</Typography>
                                 </MenuItem>
                             ))}
                         </Menu>
@@ -90,7 +95,6 @@ function ResponsiveAppBar() {
                         variant="h5"
                         noWrap
                         component="a"
-                        href="#app-bar-with-responsive-menu"
                         sx={{
                             mr: 2,
                             display: { xs: 'flex', md: 'none' },
@@ -105,11 +109,13 @@ function ResponsiveAppBar() {
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page) => (
                             <Button
-                                key={page}
+                                key={page.path}
+                                component={NavLink}
+                                to={page.path}
                                 onClick={handleCloseNavMenu}
                                 sx={{ my: 2, color: 'white', display: 'block' }}
                             >
-                                {page}
+                                {page.title}
                             </Button>
                         ))}
                     </Box>
