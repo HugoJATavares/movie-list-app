@@ -1,8 +1,10 @@
 import React from 'react'
+import MovieList from '../components/MovieList'
 
 
-export default function Favourites() {
+export default function Favourites(props) {
+  const { data } = props;
   return (
-    <div>Favourites</div>
-  )
+      <MovieList data={data} />
+    )
 }

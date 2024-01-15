@@ -3,7 +3,8 @@ import axios from 'axios'
 import MovieFilters from '../components/MovieFilters';
 import MovieList from '../components/MovieList';
 
-export default function SearchMovies() {
+export default function SearchMovies(props) {
+    const { handleAddToList } = props;
     const [movies, setMovies] = useState([]);
 
     const handleSearchMovies = (queries) => {
@@ -29,7 +30,7 @@ export default function SearchMovies() {
   return (
     <div>
         <MovieFilters handleSearchMovies= {handleSearchMovies} />
-        <MovieList data={movies} />
+        <MovieList handleAddToList ={handleAddToList} data={movies} />
     </div>
     
   )
