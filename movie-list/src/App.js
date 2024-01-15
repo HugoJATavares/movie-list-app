@@ -9,10 +9,15 @@ import Favourites from "./features/Favourites";
 function App() {
 
   const [savedMovies, setSavedMovies] = useState([]);
-
+  const [savedMoviesMap, setSavedMoviesMap] = useState(null);
   useEffect(() => {
     const movies = JSON.parse(localStorage.getItem("savedMovies") || "[]");
     setSavedMovies(movies);
+    const mmap = {};
+    movies.forEach((sm) => {
+      mmap[sm.imdbID] = true;
+    });
+    setSavedMoviesMap(mmap);
   }, [])
   
   const handleAddToList = (movie) => {
@@ -20,14 +25,34 @@ function App() {
     const newSavedMovies = [movie, ...savedMovies];
     localStorage.setItem("savedMovies", JSON.stringify(newSavedMovies));
     setSavedMovies(newSavedMovies);
+    const newMoviesMap = {
+      ...savedMoviesMap,
+      [movie.imdbID]: true
+    };
+    setSavedMoviesMap(newMoviesMap);
   }
+
+  const handleRemoveFromList = (id) => {
+    const savedMovies = JSON.parse(localStorage.getItem("savedMovies" || "[]"));
+    const filteredMovies = savedMovies.filter((sm) => {
+      return sm.imdbID !== id;
+    });
+    localStorage.setItem("savedMovies", JSON.stringify(filteredMovies));
+    setSavedMovies(filteredMovies);
+    const newMoviesMap = {
+      ...savedMoviesMap,
+      [id]:false
+    };
+    setSavedMoviesMap(newMoviesMap);
+  }
+
   return (
     <BrowserRouter>
       <CssBaseline/>
       <NavBar/>
       <Routes>
-        <Route path="/" element={<SearchMovies handleAddToList={handleAddToList} />} />
-        <Route path="/watchlist" element={<Favourites data={savedMovies} />}/>
+        <Route path="/" element={<SearchMovies handleAddToList={handleAddToList} savedMoviesMap={savedMoviesMap} handleRemoveFromList={handleRemoveFromList} />} />
+        <Route path="/watchlist" element={<Favourites data={savedMovies} savedMoviesMap={savedMoviesMap} handleRemoveFromList={handleRemoveFromList} />} />
       </Routes>
     </BrowserRouter>
   );

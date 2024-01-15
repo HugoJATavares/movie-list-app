@@ -3,8 +3,8 @@ import MovieList from '../components/MovieList'
 
 
 export default function Favourites(props) {
-  const { data } = props;
+  const { data, savedMoviesMap, handleRemoveFromList } = props;
   return (
-      <MovieList data={data} />
+      <MovieList data={data} savedMoviesMap={savedMoviesMap} handleRemoveFromList={handleRemoveFromList}/>
     )
 }
