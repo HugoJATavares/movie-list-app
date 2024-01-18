@@ -9,7 +9,7 @@ export default function SearchMovies(props) {
 
     const handleSearchMovies = (queries) => {
         const { s } = queries;
-        axios.get(`/movies?s=${s}`)
+        axios.get(`https://www.omdbapi.com/?s=${s}&apikey=${omdbApiKey}`)
             .then((res) =>{
                 if(Array.isArray(res.data.Search)) {
                     setMovies(res.data.Search.map((s)=>{
