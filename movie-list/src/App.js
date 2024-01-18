@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { CssBaseline } from "@mui/material";
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-
+import { useSnackbar } from "notistack";
 import NavBar from "./components/NavBar"
 import SearchMovies from "./features/SearchMovies";
 import Favourites from "./features/Favourites";
@@ -10,6 +10,8 @@ function App() {
 
   const [savedMovies, setSavedMovies] = useState([]);
   const [savedMoviesMap, setSavedMoviesMap] = useState(null);
+  const { enqueueSnackbar } = useSnackbar();
+  
   useEffect(() => {
     const movies = JSON.parse(localStorage.getItem("savedMovies") || "[]");
     setSavedMovies(movies);
@@ -30,6 +32,7 @@ function App() {
       [movie.imdbID]: true
     };
     setSavedMoviesMap(newMoviesMap);
+    enqueueSnackbar("Added movie to watchlist")
   }
 
   const handleRemoveFromList = (id) => {
@@ -44,6 +47,7 @@ function App() {
       [id]:false
     };
     setSavedMoviesMap(newMoviesMap);
+    enqueueSnackbar("Removed movie from watchlist");
   }
 
   return (
